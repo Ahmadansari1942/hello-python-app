@@ -28,8 +28,9 @@ def home():
         </head>
         <body>
             <div class="container">
-                <h1>🎉 Hello World from Python!</h1>
-                <p>Welcome to Flask App on EC2</p>
+                <h1> Hello World from Python!</h1>
+                <p>Welcome to Flask App </p>
+                <p>ahmad</p>
                 
             </div>
         </body>
@@ -46,6 +47,7 @@ def api_hello():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
 
 
 
