@@ -1,29 +1,50 @@
-print("Hello World from Python")
+from flask import Flask
 
-name = input("Enter your name: ")
-print(f"Hello {name}, welcome to Python!")
+app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return '''
+    <html>
+        <head>
+            <title>Hello Python App</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    padding: 50px;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                }
+                h1 { font-size: 48px; margin-bottom: 20px; }
+                p { font-size: 20px; }
+                .container {
+                    background: rgba(255,255,255,0.1);
+                    padding: 40px;
+                    border-radius: 20px;
+                    backdrop-filter: blur(10px);
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>🎉 Hello World from Python!</h1>
+                <p>Welcome to Flask App on EC2</p>
+                <p>✅ App is running on Gunicorn + Nginx</p>
+            </div>
+        </body>
+    </html>
+    '''
 
-import tkinter as tk
+@app.route('/about')
+def about():
+    return '<h1>About Page</h1><p>This is a simple Flask application deployed on AWS EC2!</p>'
 
-# Create main window
-window = tk.Tk()
-window.title("Hello Python App")
-window.geometry("300x150")
+@app.route('/api/hello')
+def api_hello():
+    return {'message': 'Hello from Flask API!', 'status': 'success'}
 
-# Function to run when button is clicked
-def say_hello():
-    label.config(text="Hello World from Python!")
-
-# Label
-label = tk.Label(window, text="", font=("Arial", 12))
-label.pack(pady=20)
-
-# Button
-button = tk.Button(window, text="Click Me!", command=say_hello)
-button.pack()
-
-# Run the app
-window.mainloop()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
 
